@@ -2,6 +2,7 @@
 using Android.Graphics;
 using System.Net;
 using Android.Graphics.Drawables;
+using Android.Content;
 
 namespace MLearning.Droid
 {
@@ -27,6 +28,16 @@ namespace MLearning.Droid
 
 		public static int TYPE_TEXT = 1;
 		public static int TYPE_IMAGE = 2;
+
+
+		public static Intent getOpenFacebookIntent(Context context, string fb_url, string web_url) {
+
+			try {
+				return new Intent(Intent.ActionView,Android.Net.Uri.Parse(fb_url) );
+			} catch (Exception e) {
+				return new Intent(Intent.ActionView, Android.Net.Uri.Parse(web_url));
+			}
+		}
 
 		public static int getHeight(int value){
 

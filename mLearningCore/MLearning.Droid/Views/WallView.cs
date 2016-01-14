@@ -49,6 +49,7 @@ namespace MLearning.Droid
 		LinearLayout _workspace;
 
 		public int currentLOImageIndex = 0;
+		public int currentCurso=0;
 
 		//section_1
 		RelativeLayout _contentRLayout_S1;
@@ -151,6 +152,8 @@ namespace MLearning.Droid
 				_images_S2.RemoveAllViews ();	
 
 				lastSelected = -1;
+
+
 				for (int i = 0; i < _ListLOImages_S2.Count; i++) {
 
 					_images_S2.AddView (_ListLOImages_S2[i]);
@@ -222,12 +225,12 @@ namespace MLearning.Droid
 			if (lastSelected != -1) {
 				_ListLOImages_S2 [lastSelected].RemoveView (selectLayout);
 			}
+			if(currentCurso!=2)
+			{
 			imView.AddView(selectLayout);
+			}
 			lastSelected = currentLOImageIndex;
 			var textFormat = Android.Util.ComplexUnitType.Px;
-
-
-
 
 
 			var test = new ImageView (context);
@@ -287,6 +290,7 @@ namespace MLearning.Droid
 		public WallView (Context context) :
 		base (context)
 		{
+			
 			this.context = context;
 			Initialize ();
 		}
@@ -334,10 +338,7 @@ namespace MLearning.Droid
 			_mainLayout.AddView (_adLayout);
 
 			_adLayout.Click += delegate {
-				String url = "https://www.facebook.com/HiTecPe";
-				Intent i = new Intent (Intent.ActionView);
-				i.SetData (Android.Net.Uri.Parse (url));
-				context.StartActivity(i);
+				context.StartActivity(Configuration.getOpenFacebookIntent(context,"fb://page/114091405281757","http://www.hi-tec.com/pe/"));
 			};
 		}
 
@@ -856,12 +857,16 @@ namespace MLearning.Droid
 							test.SetGravity (Android.Views.GravityFlags.Center);
 							test.Tag = i;
 							test.SetX( Configuration.getWidth (100));
-							test.SetPadding (Configuration.getWidth(30), Configuration.getWidth (25), Configuration.getWidth(30), Configuration.getWidth (25));
-							 
+							//test.SetPadding (Configuration.getWidth(30), Configuration.getWidth (25), Configuration.getWidth(30), Configuration.getWidth (25));
+
+
+						
+
+
 							TextView verMapa = new TextView (context);
-							verMapa.Text = "* Ver mapa y fotos";
+							verMapa.Text = "* Ver Mapa y Fotos";
 							verMapa.Typeface = Typeface.CreateFromAsset (context.Assets, "fonts/ArcherMediumPro.otf");
-							verMapa.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight (37));
+							verMapa.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight (35));
 							verMapa.SetTextColor (Color.ParseColor (Configuration.ListaColores [i % 6]));
 
 							test.AddView (verMapa);

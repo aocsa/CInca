@@ -119,10 +119,7 @@ namespace MLearning.Droid.Views
 			_mainLayout.AddView (_adLayout);
 
 			_adLayout.Click += delegate {
-				String url = "https://www.facebook.com/HiTecPe";
-				Intent i = new Intent (Intent.ActionView);
-				i.SetData (Android.Net.Uri.Parse (url));
-				this.StartActivity(i);
+				this.StartActivity(Configuration.getOpenFacebookIntent(this,"fb://page/114091405281757","http://www.hi-tec.com/pe/"));
 			};
 		}
 
@@ -505,17 +502,20 @@ namespace MLearning.Droid.Views
 
 						LinearLayout descriptionLayout = new LinearLayout (this);
 						descriptionLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
-						descriptionLayout.SetPadding (space, 0, space, space);
+
 						descriptionLayout.Orientation = Orientation.Vertical;
-						//descriptionLayout.SetPadding (0, 0, 0, space);
-						//descriptionLayout.SetBackgroundColor (Color.AliceBlue);
+
+						int padW = Configuration.getWidth(30);
+						int padH = Configuration.getHeight (30);
+
+						descriptionLayout.SetPadding (padW, 0, padW, 0);
+
 
 						TextView titulo_detalle = new TextView (this);
 						titulo_detalle.Text = "Descripción";
 						titulo_detalle.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/ArcherMediumPro.otf");
 						titulo_detalle.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight(38));
 						titulo_detalle.SetTextColor(Color.ParseColor(Configuration.ListaColores [indice % 6]));
-						titulo_detalle.SetPadding (0, 0, 0, space);
 						descriptionLayout.AddView (titulo_detalle);
 
 						TextView detalle = new TextView (this);
@@ -523,18 +523,28 @@ namespace MLearning.Droid.Views
 						detalle.Typeface =  Typeface.CreateFromAsset(this.Assets, "fonts/ArcherMediumPro.otf");
 						detalle.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight(32));
 						descriptionLayout.AddView (detalle);
+					
 
 
+						ViewTreeObserver vto = detalle.ViewTreeObserver;
+						int H = 0;
+						vto.GlobalLayout += (sender, args) => {     
+							H = detalle.Height;
+							detalle.LayoutParameters.Height = H - Configuration.getHeight (50);
+
+						};  
 
 
 						LinearLayout separationLinear = new LinearLayout (this);
 						separationLinear.LayoutParameters = new LinearLayout.LayoutParams (-1, 5);
 						separationLinear.SetBackgroundColor (Color.ParseColor ("#D8D8D8"));
 						separationLinear.Orientation = Orientation.Horizontal;
-						//separationLinear.SetPadding (0,0,0,50);
 
 						linearScroll.AddView (descriptionLayout);
 						linearScroll.AddView (separationLinear);
+
+						separationLinear.SetPadding (0,padH,0,padH);
+
 
 							listFrontPager.Add (front);
 
@@ -593,7 +603,10 @@ namespace MLearning.Droid.Views
 
 
 							} 
+							
 
+						//linearScroll.SetPadding (padW,padH,padW,padH);
+							
 							scrollPager.VerticalScrollBarEnabled = false;
 							if (k == 0) {
 								scrollPager.AddView (linearScroll);

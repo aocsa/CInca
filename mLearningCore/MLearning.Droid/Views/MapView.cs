@@ -262,10 +262,7 @@ namespace MLearning.Droid
 			_mainLayout.AddView (_adLayout);
 
 			_adLayout.Click += delegate {
-				String url = "https://www.facebook.com/HiTecPe";
-				Intent i = new Intent (Intent.ActionView);
-				i.SetData (Android.Net.Uri.Parse (url));
-				context.StartActivity(i);
+				context.StartActivity(Configuration.getOpenFacebookIntent(context,"fb://page/114091405281757","http://www.hi-tec.com/pe/"));
 			};
 		}
 
@@ -357,12 +354,6 @@ namespace MLearning.Droid
 			mapSpace.SetBackgroundColor (Color.ParseColor ("#DFC6BB"));
 			mapSpace.AddView (mapImage);
 
-			/*
-			mapImage.PivotX = mapImage.Width/2;
-			mapImage.PivotY = mapImage.Height/2;
-			mapImage.ScaleX = (float)1.5;
-			mapImage.ScaleY = (float)1.5;
-*/
 			placeSpace = new VerticalScrollView (context);
 			placeSpace.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(375-85));
 			placeSpace.SetY (Configuration.getHeight (125)+Configuration.getWidth(640));
@@ -428,25 +419,21 @@ namespace MLearning.Droid
 			int space = Configuration.getWidth (15);
 			var extraInfo = _placesData [position].placeExtraInfo;
 			for (int i = 0; i < extraInfo.Count; i++) {
-				
 
 				bool flagSpace = false;
 
 				String url = extraInfo [i].url;
 
-				if(extraInfo [i].detalle!=null)
-				{
+				if (extraInfo [i].detalle != null) {
 					TextView detalle = new TextView (context);
-					detalle.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight(32));
-					detalle.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/ArcherMediumPro.otf");
+					detalle.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight (32));
+					detalle.Typeface = Typeface.CreateFromAsset (context.Assets, "fonts/ArcherMediumPro.otf");
 					detalle.Text = extraInfo [i].detalle;
 					placesInfoLayout.AddView (detalle);
 					flagSpace = true;
-
 				}
 				 
 				if(url!=null){
-
 
 					ImageView image = new ImageView (context);
 					Picasso.With (context).Load (url).Placeholder(context.Resources.GetDrawable (Resource.Drawable.progress_animation)).Resize(Configuration.getWidth(640),Configuration.getHeight(640)).CenterInside().Into (image);

@@ -40,20 +40,20 @@ namespace MLearning.Droid
 		Context context;
 
 		public frontView (Context context) :
-			base (context)
+		base (context)
 		{
 			this.context = context;
 			Initialize ();
 		}
 
 		public frontView (Context context, IAttributeSet attrs) :
-			base (context, attrs)
+		base (context, attrs)
 		{
 			Initialize ();
 		}
 
 		public frontView (Context context, IAttributeSet attrs, int defStyle) :
-			base (context, attrs, defStyle)
+		base (context, attrs, defStyle)
 		{
 			Initialize ();
 		}
@@ -68,7 +68,7 @@ namespace MLearning.Droid
 
 			foreach (var w in AddResources.Instance.addList)
 				adsImagesPath.Add (w);
-	
+
 			initUi ();
 			this.AddView (_mainLayout);
 		}
@@ -81,18 +81,18 @@ namespace MLearning.Droid
 			_adLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (255));
 
 
-			//Drawable dr = new BitmapDrawable (getBitmapFromAsset (adsImagesPath[idAd]));
-			//_adLayout.SetBackgroundDrawable (dr);
-			//_adLayout.SetY (Configuration.getHeight(1136-85-255));
+			Drawable dr = new BitmapDrawable (getBitmapFromAsset (adsImagesPath[idAd]));
+			_adLayout.SetBackgroundDrawable (dr);
+			_adLayout.SetY (Configuration.getHeight(1136-85-255));
 
-			ImageView imgProfile = new ImageView (context);
-			imgProfile.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (255));
-			Picasso.With (context).Load (adsImagesPath[idAd]).Resize(Configuration.getWidth(640),Configuration.getHeight(255)).Into (imgProfile);
-			imgProfile.SetY (Configuration.getHeight (1136 - 85 - 255));
+			//ImageView imgProfile = new ImageView (context);
+			//imgProfile.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (255));
+			//Picasso.With (context).Load (adsImagesPath[idAd]).Resize(Configuration.getWidth(640),Configuration.getHeight(255)).Into (imgProfile);
+			//imgProfile.SetY (Configuration.getHeight (1136 - 85 - 255));
 
-			_mainLayout.AddView (imgProfile);
+			_mainLayout.AddView (_adLayout);
 
-			imgProfile.Click += delegate {
+			_adLayout.Click += delegate {
 				String url = "https://www.facebook.com/HiTecPe";
 				Intent i = new Intent (Intent.ActionView);
 				i.SetData (Android.Net.Uri.Parse (url));
@@ -135,7 +135,7 @@ namespace MLearning.Droid
 			_mainLayout.AddView (_publicidadLayout);
 			_publicidadLayout.Click += delegate {
 				if (adOpen) {
-					
+
 
 					hideAd ();
 				} else {

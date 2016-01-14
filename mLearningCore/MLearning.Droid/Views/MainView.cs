@@ -640,8 +640,11 @@ namespace MLearning.Droid.Views
 				}
 				break;
 			case "LearningOjectsList":
+				
 				resetMLOs ();
-				//(ViewModel as MainViewModel).LearningOjectsList.CollectionChanged += _learningObjectsList_CollectionChanged;
+
+
+
 				setIndex (lo._ListLOImages_S2 [0], new EventArgs ());
 				lo._ListLOImages_S2 [0].AddView (lo.selectLayout);
 				lo.lastSelected = 0;
@@ -809,10 +812,25 @@ namespace MLearning.Droid.Views
 
 				}
 
+				if (vm.CircleID==25) {
+
+					var Flores = list[0];
+					var Orquideas = list[1];		
+					var Mamiferos = list[2];		
+					var Aves = list[3];
+					list [0] = Aves;
+					list [1] = Orquideas;
+					list [2] = Flores;
+					list [3] = Mamiferos;
+
+				}
+
 				for (int i = 0; i < list.Count; i++) {
 					//list [i].Click += Lo_ImagenLO_Click;
 					list [i].Click += setIndex;
 				}
+
+
 
 				lo.ListImages = list;
 
@@ -1032,6 +1050,8 @@ namespace MLearning.Droid.Views
 		public void showCurso(int index)
 		{
 			//s_list = new ObservableCollection<MainViewModel.page_collection_wrapper> ();
+			//vm._currentCurso=index;
+			lo.currentCurso = index;
 			player.Stop();
 			_isHome = false;
 
@@ -1416,14 +1436,14 @@ namespace MLearning.Droid.Views
 					});
 				}
 
-				/*if (_currentCurso == 0 && _currentUnidad == 1) {		
+				if (_currentCurso == 0 && _currentUnidad == 1) {		
 					var a = lo._listUnidades[4];		
 					var b = lo._listUnidades[2];		
 					var c = lo._listUnidades[3];		
 					lo._listUnidades [2] = a;		
 					lo._listUnidades [3] = b;		
 					lo._listUnidades [4] = c;		
-				} */
+				}
 
 				lo.initUnidades (_currentCurso,_currentUnidad);
 

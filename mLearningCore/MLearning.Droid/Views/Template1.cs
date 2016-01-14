@@ -51,9 +51,8 @@ namespace MLearning.Droid
 			Configuration.setWidthPixel (widthInDp);
 			Configuration.setHeigthPixel (heightInDp);
 
-			//ini ();
 			ini2 ();
-			//iniNotifList ();
+
 			this.AddView (mainLayout);
 
 		}
@@ -70,7 +69,7 @@ namespace MLearning.Droid
 			mainLayout = new RelativeLayout (context);
 			mainLayout.LayoutParameters = new RelativeLayout.LayoutParams (-1,-1);
 			int padW = Configuration.getWidth(30);
-			int padH = Configuration.getHeight (15);
+			int padH = Configuration.getHeight (0);
 			mainLayout.SetPadding (padW,padH,padW,padH);
 
 			contentLinearLayout = new LinearLayout (context);
@@ -79,6 +78,7 @@ namespace MLearning.Droid
 
 
 			imHeader = new ImageView (context);
+			imHeader.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
 			titleHeader = new TextView (context);
 			AutorHeader = new TextView (context);
 			content = new TextView (context);
@@ -93,9 +93,6 @@ namespace MLearning.Droid
 
 			content.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight(32));
 			content.Typeface = Typeface.CreateFromAsset(context.Assets, "fonts/ArcherMediumPro.otf");
-
-
-
 
 			contentLinearLayout.AddView (titleHeader);
 			contentLinearLayout.AddView (content);
@@ -201,7 +198,7 @@ namespace MLearning.Droid
 
 
 			int padW = Configuration.getWidth(45);
-			int padH = Configuration.getHeight (15);
+			int padH = Configuration.getHeight (0);
 
 			mainLayout.SetPadding (padW,padH,padW,padH);
 
@@ -227,11 +224,14 @@ namespace MLearning.Droid
 		private string _title;
 		public string Title{
 			get{return _title; }
-			set{_title = value;
+			set{
+				_title = value;
 				if (_title == null) {
 					contentLinearLayout.RemoveView (titleHeader);
+				} else {
+					titleHeader.Text = _title;
 				}
-				titleHeader.Text = _title;}
+			}
 
 		}
 
@@ -250,18 +250,17 @@ namespace MLearning.Droid
 
 				if (_content == null) {
 					contentLinearLayout.RemoveView (content);
+				} else {
+					content.TextFormatted = Html.FromHtml (_content);
+
+					ViewTreeObserver vto = content.ViewTreeObserver;
+					int H = 0;
+					vto.GlobalLayout += (sender, args) => {     
+						H = content.Height;
+						//content.LayoutParameters.Height = H - Configuration.getHeight (30);
+
+					};  
 				}
-				content.TextFormatted = Html.FromHtml (_content);
-
-				ViewTreeObserver vto = content.ViewTreeObserver;
-				int H = 0;
-				vto.GlobalLayout += (sender, args) =>
-				{     
-					H = content.Height;
-					Console.WriteLine ("TAM:::1:" + H );
-					content.LayoutParameters.Height = H-Configuration.getHeight(35);
-
-				};  
 					//content.Text = _content;
 			}
 

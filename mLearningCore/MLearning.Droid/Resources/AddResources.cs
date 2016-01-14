@@ -7,21 +7,26 @@ namespace MLearning.Droid
 	{
 
 		public List<String> addList = new List<String>(); 
-		 
+
 		public List<String> bannerList = new List<String>(); 
 
 		public AddResources ()
 		{
 
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/v1.png");
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/v2.png");
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/v3.png");
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/v4.png");
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/v5.png");
 
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/w1.png");
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/w2.png");
-			addList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/w3.png");
+			//adsImagesPath.Add ("images/ad1.jpg");
+			//adsImagesPath.Add ("images/ad2.jpg");
+			//adsImagesPath.Add ("images/ad3.jpg");
+
+
+			addList.Add ("images/ad1.jpeg");
+			addList.Add ("images/ad2.jpeg"); 
+			addList.Add ("images/ad3.jpeg"); 
+			addList.Add ("images/ad4.jpeg"); 
+			addList.Add ("images/ad5.jpeg");
+			addList.Add ("images/ad6.jpeg"); 
+			addList.Add ("images/ad7.jpeg"); 
+			addList.Add ("images/ad8.jpeg"); 
 
 			bannerList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/banner-01.png");
 			bannerList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/banner-02.png");
@@ -36,7 +41,7 @@ namespace MLearning.Droid
 		}
 
 		private static AddResources instance;
-		 
+
 
 		public static AddResources Instance
 		{
