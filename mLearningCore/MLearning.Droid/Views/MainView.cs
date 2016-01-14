@@ -818,6 +818,7 @@ namespace MLearning.Droid.Views
 					var Orquideas = list[1];		
 					var Mamiferos = list[2];		
 					var Aves = list[3];
+
 					list [0] = Aves;
 					list [1] = Orquideas;
 					list [2] = Flores;
@@ -826,7 +827,8 @@ namespace MLearning.Droid.Views
 				}
 
 				for (int i = 0; i < list.Count; i++) {
-					//list [i].Click += Lo_ImagenLO_Click;
+					list [i].Tag = list [i].index;
+					list [i].index = i;
 					list [i].Click += setIndex;
 				}
 
@@ -1379,7 +1381,9 @@ namespace MLearning.Droid.Views
 				return;		
 			}
 			*/
-			_currentUnidad = imgview.index;
+			_currentUnidad = (int)imgview.Tag;
+
+
 
 
 			lo._txtUnidadN.Text = imgview.Title;
@@ -1388,10 +1392,11 @@ namespace MLearning.Droid.Views
 
 			Console.WriteLine ("loading index for nitems  = " + vm.LearningOjectsList.Count);
 			Console.WriteLine(" position LO = "+ _currentUnidad);
-			MLearning.Core.ViewModels.MainViewModel.lo_by_circle_wrapper currentLearningObject = vm.LearningOjectsList [_currentUnidad];
+			MLearning.Core.ViewModels.MainViewModel.lo_by_circle_wrapper currentLearningObject;
+
+			currentLearningObject = vm.LearningOjectsList [_currentUnidad];
 
 			int circleID = currentLearningObject.lo.Circle_id;
-
 
 			vm.OpenLOSectionListCommand.Execute(currentLearningObject);
 

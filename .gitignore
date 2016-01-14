@@ -81,8 +81,6 @@ $RECYCLE.BIN/
 *.DS_Store
 *._.DS_Store
 *.userprefs
-*.csproj
-*.sln
 
 packages/
 [Bb]uild/

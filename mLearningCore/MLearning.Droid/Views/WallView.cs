@@ -225,10 +225,9 @@ namespace MLearning.Droid
 			if (lastSelected != -1) {
 				_ListLOImages_S2 [lastSelected].RemoveView (selectLayout);
 			}
-			if(currentCurso!=2)
-			{
+
 			imView.AddView(selectLayout);
-			}
+
 			lastSelected = currentLOImageIndex;
 			var textFormat = Android.Util.ComplexUnitType.Px;
 
@@ -427,9 +426,6 @@ namespace MLearning.Droid
 			_txtCurso.Text = "LAS RUTAS";
 			_txtCurso.SetY (-100);
 
-			//_mainSpace.AddView (_txtCurso);
-
-
 			//section1-----------------------------------------------
 			_contentRLayout_S1 = new RelativeLayout(context);
 			_txtTitle_S1 = new TextView (context);
@@ -441,25 +437,7 @@ namespace MLearning.Droid
 			_imItem_S1 = new List<ImageView> ();
 			_txtItem_S1 = new List<TextView>();
 
-
-
-
-
-			//_mainLayout.AddView (_txtTitle_S1);
-			//_mainLayout.AddView (_txtAuthor_S1);
-			//_mainLayout.AddView (_imAuthor_S1);
-
-			//_mainLayout.AddView (_txtChapter_S1);
-
-			//_mainSpace.AddView (_txtChapter_S1);
-
-
-
-
-
-
 			_contentRLayout_S1.LayoutParameters = new RelativeLayout.LayoutParams (-1, Configuration.getHeight (480));
-
 
 			LinearLayout _linearTitle = new LinearLayout (context);
 			_linearTitle.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
