@@ -267,7 +267,6 @@ namespace MLearning.Droid
 		void hideAd()
 		{
 			adOpen = false;
-			int numAd = _mainLayout.ChildCount;
 			_mainLayout.RemoveView (_adLayout);
 		}
 
@@ -373,12 +372,10 @@ namespace MLearning.Droid
 			_mainLayout.AddView (_publicidadLayout);
 			_publicidadLayout.Click += delegate {
 				if (adOpen) {
-
-
 					hideAd ();
 				} else {
 					Random rnd = new Random();
-					showAd (rnd.Next(7));
+					showAd (rnd.Next(adsImagesPath.Count));
 				}
 			};
 

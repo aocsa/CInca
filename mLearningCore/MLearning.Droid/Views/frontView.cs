@@ -66,8 +66,7 @@ namespace MLearning.Droid
 			Configuration.setWidthPixel (widthInDp);
 			Configuration.setHeigthPixel (heightInDp);
 
-			foreach (var w in AddResources.Instance.addList)
-				adsImagesPath.Add (w);
+			adsImagesPath = AddResources.Instance.addList;
 
 			initUi ();
 			this.AddView (_mainLayout);
@@ -75,36 +74,23 @@ namespace MLearning.Droid
 
 		void showAd(int idAd)
 		{
-
 			adOpen = true;
 			_adLayout = new LinearLayout (context);
 			_adLayout.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (255));
-
-
 			Drawable dr = new BitmapDrawable (getBitmapFromAsset (adsImagesPath[idAd]));
 			_adLayout.SetBackgroundDrawable (dr);
 			_adLayout.SetY (Configuration.getHeight(1136-85-255));
-
-			//ImageView imgProfile = new ImageView (context);
-			//imgProfile.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight (255));
-			//Picasso.With (context).Load (adsImagesPath[idAd]).Resize(Configuration.getWidth(640),Configuration.getHeight(255)).Into (imgProfile);
-			//imgProfile.SetY (Configuration.getHeight (1136 - 85 - 255));
-
 			_mainLayout.AddView (_adLayout);
 
 			_adLayout.Click += delegate {
-				String url = "https://www.facebook.com/HiTecPe";
-				Intent i = new Intent (Intent.ActionView);
-				i.SetData (Android.Net.Uri.Parse (url));
-				context.StartActivity(i);
+				context.StartActivity(Configuration.getOpenFacebookIntent(context,"fb://page/114091405281757","http://www.hi-tec.com/pe/"));
 			};
 		}
 
 		void hideAd()
 		{
 			adOpen = false;
-			int numAd = _mainLayout.ChildCount;
-			_mainLayout.RemoveViewAt (numAd-1);
+			_mainLayout.RemoveView (_adLayout);
 		}
 
 		public Bitmap getBitmapFromAsset( String filePath) {
@@ -135,13 +121,10 @@ namespace MLearning.Droid
 			_mainLayout.AddView (_publicidadLayout);
 			_publicidadLayout.Click += delegate {
 				if (adOpen) {
-
-
 					hideAd ();
 				} else {
 					Random rnd = new Random();
-					int nextval = rnd.Next(8);
-					showAd (nextval);
+					showAd (rnd.Next(adsImagesPath.Count));
 				}
 			};
 
