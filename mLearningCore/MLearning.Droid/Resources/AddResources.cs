@@ -13,20 +13,17 @@ namespace MLearning.Droid
 		public AddResources ()
 		{
 
-
-			//adsImagesPath.Add ("images/ad1.jpg");
-			//adsImagesPath.Add ("images/ad2.jpg");
-			//adsImagesPath.Add ("images/ad3.jpg");
+ 
 
 
-			addList.Add ("images/ad1.jpeg");
-			addList.Add ("images/ad2.jpeg"); 
-			addList.Add ("images/ad3.jpeg"); 
-			addList.Add ("images/ad4.jpeg"); 
-			addList.Add ("images/ad5.jpeg");
-			addList.Add ("images/ad6.jpeg"); 
-			addList.Add ("images/ad7.jpeg"); 
-			addList.Add ("images/ad8.jpeg"); 
+			addList.Add ("images/ad1.jpg");
+			addList.Add ("images/ad2.jpg"); 
+			addList.Add ("images/ad3.jpg"); 
+			addList.Add ("images/ad4.jpg"); 
+			addList.Add ("images/ad5.jpg");
+			addList.Add ("images/ad6.jpg"); 
+			addList.Add ("images/ad7.jpg"); 
+			addList.Add ("images/ad8.jpg"); 
 
 			bannerList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/banner-01.png");
 			bannerList.Add ("https://dl.dropboxusercontent.com/u/8925441/banners/banner-02.png");

@@ -140,7 +140,7 @@ namespace MLearning.Droid
 					hideAd ();
 				} else {
 					Random rnd = new Random();
-					int nextval = rnd.Next(0, 7);
+					int nextval = rnd.Next(8);
 					showAd (nextval);
 				}
 			};

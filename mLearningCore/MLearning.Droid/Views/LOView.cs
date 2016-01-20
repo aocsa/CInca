@@ -96,9 +96,7 @@ namespace MLearning.Droid.Views
 			_dialogDownload.SetMessage ("Cargando");
 			_dialogDownload.Show ();
 
-			adsImagesPath.Add ("images/ad1.jpg");
-			adsImagesPath.Add ("images/ad2.jpg");
-			adsImagesPath.Add ("images/ad3.jpg");
+			adsImagesPath = AddResources.Instance.addList;
 
 			await ini();
 			//LoadPagesDataSource ();
@@ -650,7 +648,7 @@ namespace MLearning.Droid.Views
 					hideAd ();
 				} else {
 					Random rnd = new Random();
-					showAd (rnd.Next(3));
+					showAd (rnd.Next(7));
 				}
 			};
 
