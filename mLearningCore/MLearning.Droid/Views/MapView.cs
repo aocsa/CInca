@@ -20,6 +20,8 @@ using Koush;
 using Android.Views.Animations;
 using Core.DownloadCache;
 using Core.Session;
+using System.Threading;
+using Android.Text.Util;
 
 namespace MLearning.Droid
 {
@@ -29,6 +31,11 @@ namespace MLearning.Droid
 		ProgressDialog _dialogDownload;
 		RelativeLayout _mainLayout;
 		LinearLayout mapSpace;
+		//HUILLCA----------------
+		RelativeLayout mapSpaceMarker;
+		ImageIconMap iconMarker;
+		AlphaAnimation fadeOut;
+		//-------------------------
 		public VerticalScrollView placeSpace;
 		public ScaleImageView mapImage;
 		public List<LinearLayout> _placesLayout = new List<LinearLayout>();
@@ -311,6 +318,17 @@ namespace MLearning.Droid
 
 			mapImage.ZoomTo ((float)1.5,x,y );
 			mapImage.Cutting ();
+			
+			
+			
+			
+			
+			//HUILLCA----------
+			iconMarker.SetX(Configuration.getWidth( posXY.Item1));
+			iconMarker.SetY(Configuration.getHeight(posXY.Item2));
+			iconMarker.Visibility = ViewStates.Visible;
+			iconMarker.StartAnimation(fadeOut);
+			//----------------------
 		}
 
 		public void ini(){
@@ -349,8 +367,45 @@ namespace MLearning.Droid
 			mapSpace.SetY (Configuration.getHeight (125));
 			mapSpace.SetGravity (GravityFlags.Left);
 			mapSpace.SetBackgroundColor (Color.ParseColor ("#DFC6BB"));
+			
+			//HUILLCA-----------------------------------------
+			mapSpaceMarker = new RelativeLayout (context);
+			mapSpaceMarker.LayoutParameters = new RelativeLayout.LayoutParams (Configuration.getWidth(640), Configuration.getWidth(640));
+			mapSpaceMarker.SetY (Configuration.getHeight (125));
+			mapSpaceMarker.SetGravity (GravityFlags.Left);
+			mapSpaceMarker.SetBackgroundColor (Color.Transparent);
+
+			iconMarker = new ImageIconMap (context);
+			iconMarker.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth (60), Configuration.getWidth (60));
+			int w = Configuration.getWidth (70);
+			int h = Configuration.getWidth (70);
+			iconMarker.SetImageBitmap(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/iconmap12.png"), w, h, true));
+			iconMarker.SetX (-100);
+			iconMarker.SetY (-100);
+			mapSpaceMarker.AddView (iconMarker);
+
+			var fadeIn = new AlphaAnimation(0, 1);
+			fadeIn.Interpolator = new AccelerateInterpolator();
+			fadeIn.Duration = 1000;
+
+			fadeOut = new AlphaAnimation(1, 0);
+			fadeOut.Interpolator = new DecelerateInterpolator();
+			fadeOut.Duration = 3000;
+			fadeOut.AnimationEnd += (s, e) => 
+			{
+				 /*ThreadPool.QueueUserWorkItem(state =>
+					{
+						Thread.Sleep(2000); //wait 2 sec
+						//RunOnUiThread(() => iconMarker.StartAnimation(fadeOut));
+					});*/
+					iconMarker.StartAnimation(fadeIn);
+					iconMarker.Visibility = ViewStates.Invisible;
+			};
+			//-------------------------------------------------------
 			mapSpace.AddView (mapImage);
 
+			
+			
 			placeSpace = new VerticalScrollView (context);
 			placeSpace.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(375-85));
 			placeSpace.SetY (Configuration.getHeight (125)+Configuration.getWidth(640));
@@ -362,6 +417,7 @@ namespace MLearning.Droid
 
 
 			_mainLayout.AddView (mapSpace);
+			_mainLayout.AddView (mapSpaceMarker);//HUILLCA
 			_mainLayout.AddView (placeSpace);
 
 			_publicidadLayout = new LinearLayout (context);
@@ -372,6 +428,8 @@ namespace MLearning.Droid
 			_mainLayout.AddView (_publicidadLayout);
 			_publicidadLayout.Click += delegate {
 				if (adOpen) {
+					
+					
 					hideAd ();
 				} else {
 					Random rnd = new Random();
@@ -424,6 +482,7 @@ namespace MLearning.Droid
 					detalle.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight (32));
 					detalle.Typeface = Typeface.CreateFromAsset (context.Assets, "fonts/ArcherMediumPro.otf");
 					detalle.Text = extraInfo [i].detalle;
+					Linkify.AddLinks (detalle, MatchOptions.All);//HUILLCA
 					placesInfoLayout.AddView (detalle);
 					flagSpace = true;
 				}
