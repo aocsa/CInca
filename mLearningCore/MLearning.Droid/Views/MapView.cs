@@ -313,22 +313,29 @@ namespace MLearning.Droid
 			//mapImage.PivotY = posXY.Item2;
 			//mapImage.ScaleX = 3;
 			//mapImage.ScaleY = 3;
-			int x =  950*posXY.Item1/1000;
-			int y =  900*posXY.Item2/1000;
+			//int x =  950*posXY.Item1/1000;
+			int x =  800*posXY.Item1/1000;
+			int y =  800*posXY.Item2/1000;
 
-			mapImage.ZoomTo ((float)1.5,x,y );
+			mapImage.ZoomTo ((float)1,x,y );
 			mapImage.Cutting ();
-			
-			
-			
-			
-			
-			//HUILLCA----------
-			iconMarker.SetX(Configuration.getWidth( posXY.Item1));
-			iconMarker.SetY(Configuration.getHeight(posXY.Item2));
+
+
+			//HUILLCA-------------------------
+			int addx = 60, addy = 40;//para mejorar la precisión
+			//800 es el 80% del tamaño del mapa(1000x1000)
+			if (posXY.Item1 > 800) addx=0;
+			if (posXY.Item2 > 800) addy=0;
+
+			int spaceMapXY = Configuration.getWidth(640);
+			float x2 = (spaceMapXY*(posXY.Item1+Configuration.getWidth(addx))/1000);
+			float y2 = (spaceMapXY*(posXY.Item2+Configuration.getWidth(addy))/1000);
+
+			iconMarker.SetX(x2-40);//se resta el ancho del icono
+			iconMarker.SetY(y2-60);//se resta la altitud del icono
 			iconMarker.Visibility = ViewStates.Visible;
 			iconMarker.StartAnimation(fadeOut);
-			//----------------------
+			//-----------------------------------------------------------
 		}
 
 		public void ini(){
