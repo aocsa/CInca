@@ -314,6 +314,8 @@ namespace MLearning.Droid
 			//mapImage.ScaleX = 3;
 			//mapImage.ScaleY = 3;
 			//int x =  950*posXY.Item1/1000;
+
+			//! Esta es la parte del Zoom
 			int x =  800*posXY.Item1/1000;
 			int y =  800*posXY.Item2/1000;
 
@@ -322,18 +324,19 @@ namespace MLearning.Droid
 
 
 			//HUILLCA-------------------------
-			int addx = 60, addy = 40;//para mejorar la precisión
+			/*int addx = 60, addy = 40;//para mejorar la precisión
 			//800 es el 80% del tamaño del mapa(1000x1000)
 			if (posXY.Item1 > 800) addx=0;
-			if (posXY.Item2 > 800) addy=0;
+			if (posXY.Item2 > 800) addy=0;*/
 
 			int spaceMapXY = Configuration.getWidth(640);
-			float x2 = (spaceMapXY*(posXY.Item1+Configuration.getWidth(addx))/1000);
-			float y2 = (spaceMapXY*(posXY.Item2+Configuration.getWidth(addy))/1000);
+			float x2 = (spaceMapXY*(posXY.Item1/*+Configuration.getWidth(addx)*/)/1000);
+			float y2 = (spaceMapXY*(posXY.Item2/*+Configuration.getWidth(addy)*/)/1000);
 
 			iconMarker.SetX(x2-40);//se resta el ancho del icono
 			iconMarker.SetY(y2-60);//se resta la altitud del icono
 			iconMarker.Visibility = ViewStates.Visible;
+
 			iconMarker.StartAnimation(fadeOut);
 			//-----------------------------------------------------------
 		}
@@ -383,12 +386,13 @@ namespace MLearning.Droid
 			mapSpaceMarker.SetBackgroundColor (Color.Transparent);
 
 			iconMarker = new ImageIconMap (context);
-			iconMarker.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth (60), Configuration.getWidth (60));
-			int w = Configuration.getWidth (70);
-			int h = Configuration.getWidth (70);
+			iconMarker.LayoutParameters = new LinearLayout.LayoutParams (Configuration.getWidth (40), Configuration.getWidth (40));
+			int w = Configuration.getWidth (40);
+			int h = Configuration.getWidth (40);
 			iconMarker.SetImageBitmap(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/iconmap12.png"), w, h, true));
-			iconMarker.SetX (-100);
-			iconMarker.SetY (-100);
+			//iconMarker.SetX (-35);
+			//iconMarker.SetY (-70);
+			iconMarker.SetAlpha (185);//hace que la imagen sea mas transparente
 			mapSpaceMarker.AddView (iconMarker);
 
 			var fadeIn = new AlphaAnimation(0, 1);
