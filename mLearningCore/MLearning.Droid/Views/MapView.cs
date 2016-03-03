@@ -319,8 +319,8 @@ namespace MLearning.Droid
 			int x =  800*posXY.Item1/1000;
 			int y =  800*posXY.Item2/1000;
 
-			/*mapImage.ZoomTo ((float)1,x,y );
-			mapImage.Cutting ();*/
+			mapImage.ZoomTo ((float)0,x,y );
+			mapImage.Cutting ();
 
 
 			//HUILLCA-------------------------

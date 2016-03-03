@@ -12,6 +12,7 @@ using MLearning.Droid.Views;
 using MLearning.Core.ViewModels;
 using Android.Text;
 using Android.Text.Util;
+using Android.Views;
 
 namespace MLearning.Droid
 {
@@ -732,7 +733,9 @@ namespace MLearning.Droid
 				linearUnidad.SetPadding (Configuration.getWidth(100), Configuration.getWidth (25),0, Configuration.getWidth (25));
 				//linearUnidad.SetX (100);
 
-
+				if (indexCurso == 0) {//Para que solo afecte a las Rutas
+					linearUnidad.SetPadding (Configuration.getWidth(100), Configuration.getWidth (25),0, Configuration.getWidth (-25));
+				}
 
 				TextView titleUnidad = new TextView(context);
 				titleUnidad.SetTextSize (textFormat,Configuration.getHeight(42));
@@ -781,7 +784,7 @@ namespace MLearning.Droid
 				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile("\\W\\d+\\W\\s\\d+\\W\\d+"),"");
 				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"),"");
 				Linkify.AddLinks(descriptionUnidad,Patterns.Phone,"tel:");
-				Linkify.AddLinks(descriptionUnidad,Patterns.EmailAddress,"");
+				Linkify.AddLinks(descriptionUnidad,Patterns.EmailAddress,"email:");
 				Linkify.AddLinks(descriptionUnidad,Patterns.WebUrl,"http://");
 
 				//descriptionUnidad.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
@@ -831,15 +834,15 @@ namespace MLearning.Droid
 						} else {
 							
 							LinearLayout test = new LinearLayout (context);
-							test.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
+							//test.LayoutParameters = new LinearLayout.LayoutParams (-1, -2);
+							test.LayoutParameters = new LinearLayout.LayoutParams (-1, Configuration.getHeight(100));
 							test.SetGravity (Android.Views.GravityFlags.Center);
 							test.Tag = i;
-							test.SetX( Configuration.getWidth (100));
+							test.SetX( Configuration.getWidth (0));
+							test.SetY( Configuration.getWidth (-40));
 							//test.SetPadding (Configuration.getWidth(30), Configuration.getWidth (25), Configuration.getWidth(30), Configuration.getWidth (25));
 
-
-						
-
+							test.SetGravity (GravityFlags.Left | GravityFlags.Center);
 
 							TextView verMapa = new TextView (context);
 							verMapa.Text = "* Ver Mapa y Fotos";
