@@ -780,7 +780,7 @@ namespace MLearning.Droid
 				//Huillca
 				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile("\\W\\d+\\W\\s\\d+\\W\\d+"),"");
 				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"),"");
-				Linkify.AddLinks(descriptionUnidad,Patterns.Phone,"phone");
+				Linkify.AddLinks(descriptionUnidad,Patterns.Phone,"tel:");
 				Linkify.AddLinks(descriptionUnidad,Patterns.EmailAddress,"");
 				Linkify.AddLinks(descriptionUnidad,Patterns.WebUrl,"http://");
 
