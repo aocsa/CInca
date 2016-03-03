@@ -319,8 +319,8 @@ namespace MLearning.Droid
 			int x =  800*posXY.Item1/1000;
 			int y =  800*posXY.Item2/1000;
 
-			mapImage.ZoomTo ((float)1,x,y );
-			mapImage.Cutting ();
+			/*mapImage.ZoomTo ((float)1,x,y );
+			mapImage.Cutting ();*/
 
 
 			//HUILLCA-------------------------
@@ -330,11 +330,11 @@ namespace MLearning.Droid
 			if (posXY.Item2 > 800) addy=0;*/
 
 			int spaceMapXY = Configuration.getWidth(640);
-			float x2 = (spaceMapXY*(posXY.Item1/*+Configuration.getWidth(addx)*/)/1000);
-			float y2 = (spaceMapXY*(posXY.Item2/*+Configuration.getWidth(addy)*/)/1000);
+			float x2 = (spaceMapXY*(posXY.Item1)/1000);
+			float y2 = (spaceMapXY*(posXY.Item2)/1000);
 
-			iconMarker.SetX(x2-40);//se resta el ancho del icono
-			iconMarker.SetY(y2-60);//se resta la altitud del icono
+			iconMarker.SetX(x2-Configuration.getWidth(30));//se resta el ancho del icono
+			iconMarker.SetY(y2-Configuration.getWidth(30));//se resta la altitud del icono
 			iconMarker.Visibility = ViewStates.Visible;
 
 			iconMarker.StartAnimation(fadeOut);
@@ -390,8 +390,8 @@ namespace MLearning.Droid
 			int w = Configuration.getWidth (40);
 			int h = Configuration.getWidth (40);
 			iconMarker.SetImageBitmap(Bitmap.CreateScaledBitmap (getBitmapFromAsset ("icons/iconmap12.png"), w, h, true));
-			//iconMarker.SetX (-35);
-			//iconMarker.SetY (-70);
+			iconMarker.SetX (-100);
+			iconMarker.SetY (-100);
 			iconMarker.SetAlpha (185);//hace que la imagen sea mas transparente
 			mapSpaceMarker.AddView (iconMarker);
 

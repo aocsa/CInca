@@ -232,6 +232,7 @@ namespace MLearning.Droid
 				} else {
 					titleHeader.Text = _title;
 					Linkify.AddLinks (titleHeader, MatchOptions.All);//HUILLCA
+
 				}
 			}
 

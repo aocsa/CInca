@@ -776,7 +776,14 @@ namespace MLearning.Droid
 				//descriptionUnidad.Text = _listUnidades [i].Description;
 				descriptionUnidad.Typeface =  Typeface.CreateFromAsset(context.Assets, "fonts/ArcherMediumPro.otf");
 				descriptionUnidad.SetTextSize (textFormat,Configuration.getHeight(28));
-				Linkify.AddLinks (descriptionUnidad, MatchOptions.All);
+				//Linkify.AddLinks (descriptionUnidad, MatchOptions.All);
+				//Huillca
+				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile("\\W\\d+\\W\\s\\d+\\W\\d+"),"");
+				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"),"");
+				Linkify.AddLinks(descriptionUnidad,Patterns.Phone,"phone");
+				Linkify.AddLinks(descriptionUnidad,Patterns.EmailAddress,"");
+				Linkify.AddLinks(descriptionUnidad,Patterns.WebUrl,"http://");
+
 				//descriptionUnidad.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 				//descriptionUnidad.LinksClickable = true;
 

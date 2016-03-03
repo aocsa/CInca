@@ -1684,7 +1684,7 @@ namespace MLearning.Droid.Views
 		}
 		private void RegisterWithGCM()
 		{
-
+			
 
 			if (!GcmClient.IsRegistered(this))
 			{
