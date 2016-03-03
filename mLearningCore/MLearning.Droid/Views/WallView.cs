@@ -781,11 +781,16 @@ namespace MLearning.Droid
 				descriptionUnidad.SetTextSize (textFormat,Configuration.getHeight(28));
 				//Linkify.AddLinks (descriptionUnidad, MatchOptions.All);
 				//Huillca
-				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile("\\W\\d+\\W\\s\\d+\\W\\d+"),"");
-				//Linkify.AddLinks (descriptionUnidad, Java.Util.Regex.Pattern.Compile(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"),"");
-				Linkify.AddLinks(descriptionUnidad,Patterns.Phone,"tel:");
-				Linkify.AddLinks(descriptionUnidad,Patterns.EmailAddress,"email:");
-				Linkify.AddLinks(descriptionUnidad,Patterns.WebUrl,"http://");
+				if (indexCurso == 1   && indexUnidad!=6) {//Para que no afecte a las Rutas ni a los precios
+					//Linkify.AddLinks(descriptionUnidad,Patterns.Phone,"tel:");
+					//(084) 21-1122  --------modelo de telefono
+					//984-820715 ----modelo celular
+					Linkify.AddLinks(descriptionUnidad,Java.Util.Regex.Pattern.Compile("\\W\\d+\\W\\s\\d+\\W\\d+"),"tel:");
+					Linkify.AddLinks(descriptionUnidad,Java.Util.Regex.Pattern.Compile("\\d+\\W\\d+"),"tel:");
+					Linkify.AddLinks(descriptionUnidad,Patterns.EmailAddress,"email:");
+					Linkify.AddLinks(descriptionUnidad,Patterns.WebUrl,"http://");
+				}
+
 
 				//descriptionUnidad.MovementMethod = Android.Text.Method.LinkMovementMethod.Instance;
 				//descriptionUnidad.LinksClickable = true;
