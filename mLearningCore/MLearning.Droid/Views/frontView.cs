@@ -157,10 +157,10 @@ namespace MLearning.Droid
 			numTypes.Add ("4");
 			numTypes.Add ("9");
 
-			title.Add ("LAS RUTAS");
-			title.Add ("GUIA DE SERVICIOS");
-			title.Add ("GUIA DE IDENTIFICACION SILVESTRE");
-			title.Add ("CAMINO INCA EN CIFRAS");
+			title.Add (Resources.GetText(Resource.String.THE_ROUTES));
+			title.Add (Resources.GetText(Resource.String.TOURIST_SERVICE_GUIDE));
+			title.Add (Resources.GetText(Resource.String.WILDLIFE_IDENTIFICATION_GUIDE));
+			title.Add (Resources.GetText(Resource.String.INCA_TRIAL_IN_NUMBERS));
 
 			type.Add ("rutas");
 			type.Add ("guias");

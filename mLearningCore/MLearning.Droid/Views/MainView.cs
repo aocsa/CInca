@@ -799,7 +799,7 @@ namespace MLearning.Droid.Views
 
 					imgLO.index = i;
 					imgLO.Title = vm.LearningOjectsList [i].lo.title;
-					imgLO.Author = vm.LearningOjectsList [i].lo.name + " " + vm.LearningOjectsList [i].lo.lastname;
+					//imgLO.Author = vm.LearningOjectsList [i].lo.name + " " + vm.LearningOjectsList [i].lo.lastname;
 
 					imgLO.Url = vm.LearningOjectsList [i].lo.url_cover;
 					imgLO.sBackgoundUrl = vm.LearningOjectsList [i].lo.url_background;
@@ -893,9 +893,9 @@ namespace MLearning.Droid.Views
 			TaskItem fotos = new TaskItem ();
 			TaskItem rutas = new TaskItem ();
 
-			home.Name = "Home";
-			fotos.Name = "Fotos";
-			rutas.Name = "Rutas";
+			home.Name = Resources.GetText(Resource.String.Navigation_Home);
+			fotos.Name = Resources.GetText(Resource.String.Photos);
+			rutas.Name = Resources.GetText(Resource.String.Navigation_Routes);
 
 			home.Asset = "icons/iconhome.png";
 			fotos.Asset = "icons/iconcamara.png";
@@ -1006,10 +1006,10 @@ namespace MLearning.Droid.Views
 			TaskItem caminoCifras = new TaskItem ();
 			TaskItem salir = new TaskItem ();
 
-			guiaServicios.Name = "Guia de servicios";
-			guiaSilvestre.Name = "Guia de vida silvestre";
-			caminoCifras.Name = "Camino inca en cifras";
-			salir.Name = "Salir";
+			guiaServicios.Name = Resources.GetText(Resource.String.Navigation_Touristserviceguide);
+			guiaSilvestre.Name = Resources.GetText(Resource.String.Navigation_Wildlifeidentificationguide);
+			caminoCifras.Name = Resources.GetText(Resource.String.Navigation_Incatrialinnumber);
+			salir.Name = Resources.GetText(Resource.String.Exit);
 
 			guiaServicios.Asset = "icons/iconservicios.png";
 			guiaSilvestre.Asset = "icons/iconvidasilvestre.png";
@@ -1082,16 +1082,16 @@ namespace MLearning.Droid.Views
 
 			switch (index) {
 			case 0:
-				lo._txtCursoN.Text = "Las rutas";
+				lo._txtCursoN.Text = Resources.GetText(Resource.String.theroutes);
 				break;
 			case 1:
-				lo._txtCursoN.Text = "Guía de Servicios";
+				lo._txtCursoN.Text = Resources.GetText(Resource.String.touristserviceguide);
 				break;
 			case 2:
-				lo._txtCursoN.Text = "Guía de Identificación de Vida Silvestre";
+				lo._txtCursoN.Text = Resources.GetText(Resource.String.wildlifeidentificationguide);
 				break;
 			case 3:
-				lo._txtCursoN.Text = "Las Cifras";
+				lo._txtCursoN.Text = Resources.GetText(Resource.String.incatrialinnumber);
 				break;
 
 			default:
@@ -1245,7 +1245,7 @@ namespace MLearning.Droid.Views
 			lo.getWorkSpaceLayout.RemoveAllViews();
 			lo.getWorkSpaceLayout.AddView (_foro);
 
-			_foro.Author=vm.LearningOjectsList[lo.currentLOImageIndex].lo.name +" "+vm.LearningOjectsList[lo.currentLOImageIndex].lo.lastname;
+			//_foro.Author=vm.LearningOjectsList[lo.currentLOImageIndex].lo.name +" "+vm.LearningOjectsList[lo.currentLOImageIndex].lo.lastname;
 			_foro.NameLO = vm.LearningOjectsList [lo.currentLOImageIndex].lo.title;
 			_foro.Chapter = vm.LearningOjectsList [lo.currentLOImageIndex].lo.description;
 			_foro.CoverUrl = vm.LearningOjectsList [lo.currentLOImageIndex].lo.url_background;
@@ -1279,7 +1279,7 @@ namespace MLearning.Droid.Views
 			lo.getWorkSpaceLayout.AddView (task);
 
 
-			task.Author=vm.LearningOjectsList[lo.currentLOImageIndex].lo.name +" "+vm.LearningOjectsList[lo.currentLOImageIndex].lo.lastname;
+			//task.Author=vm.LearningOjectsList[lo.currentLOImageIndex].lo.name +" "+vm.LearningOjectsList[lo.currentLOImageIndex].lo.lastname;
 			task.NameLO = vm.LearningOjectsList [lo.currentLOImageIndex].lo.title;
 			task.Chapter = vm.LearningOjectsList [lo.currentLOImageIndex].lo.description;
 			task.CoverUrl = vm.LearningOjectsList [lo.currentLOImageIndex].lo.url_background;

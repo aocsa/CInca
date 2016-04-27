@@ -417,7 +417,7 @@ namespace MLearning.Droid
 			infoCursoUnidad.SetBackgroundColor (Color.ParseColor ("#40000000"));
 
 			TextView _txtCurso = new TextView (context);
-			_txtCurso.Text = "LAS RUTAS";
+			_txtCurso.Text = Resource.String.THE_ROUTES.ToString ();;
 			_txtCurso.SetY (-100);
 
 			//section1-----------------------------------------------
@@ -850,7 +850,7 @@ namespace MLearning.Droid
 							test.SetGravity (GravityFlags.Left | GravityFlags.Center);
 
 							TextView verMapa = new TextView (context);
-							verMapa.Text = "* Ver Mapa y Fotos";
+							verMapa.Text = Resources.GetText(Resource.String.See_maps_and_photos);
 							verMapa.Typeface = Typeface.CreateFromAsset (context.Assets, "fonts/ArcherMediumPro.otf");
 							verMapa.SetTextSize (ComplexUnitType.Fraction, Configuration.getHeight (35));
 							verMapa.SetTextColor (Color.ParseColor (Configuration.ListaColores [i % 6]));
